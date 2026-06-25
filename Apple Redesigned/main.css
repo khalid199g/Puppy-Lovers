@@ -1,0 +1,1596 @@
+/* ============================================================
+   APPLE CLONE — MAIN STYLESHEET (MOBILE-FIRST APPROACH)
+   Default styles target mobile viewports.
+   Wider layouts are applied via min-width media queries below.
+   All image paths resolve relative to index.html in the same folder.
+   ============================================================ */
+
+
+/* ============================================================
+   SECTION A: GLOBAL DEFAULTS & BOX MODEL RESET
+   ============================================================ */
+
+/* Strips all default browser margin/padding from every element,
+   switches to border-box sizing so padding doesn't blow up widths,
+   applies the primary typeface, and tightens word-spacing globally. */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+    word-spacing: -2px;
+}
+
+/* Prevents any image from overflow its container horizontally. */
+img { max-width: 100%; }
+
+
+/* ============================================================
+   SECTION B: MOBILE STYLES  (viewport < 768 px)
+   ============================================================ */
+
+
+/* ----------------------------------------------------------
+   B-1  TOP NAVIGATION BAR (Mobile)
+   ---------------------------------------------------------- */
+
+/* The sticky header bar that sits at the top of the screen.
+   Semi-transparent white with a blur backdrop simulates the
+   frosted-glass look. Fixed positioning keeps it on-screen
+   while the user scrolls. z-index 100 ensures it floats above
+   all page content. */
+.top-header-bar {
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 48px;
+    padding: 0 12px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    font-size: 0.75em;
+}
+
+/* The Apple logo anchor — stays flex-shrunk so it never wraps
+   and always aligns its icon vertically. */
+.brand-link {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Desktop navigation links are hidden on mobile — they only
+   appear once the viewport is wide enough (see media query). */
+.desktop-nav-links { display: none; }
+
+/* The right-side cluster of icon buttons (search, cart, hamburger).
+   They're kept together with flexbox and a fixed gap. */
+.header-icon-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+}
+
+/* Uniform sizing for the three header icon images so they all
+   render at exactly 18 × 18 px as block elements (no inline gap). */
+.brand-icon,
+.search-icon,
+.bag-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+/* Hamburger menu wrapper — visible only on mobile (hidden on desktop). */
+.hamburger-wrapper { display: block; }
+
+/* The visual three-bar icon inside the hamburger toggle. */
+.hamburger-icon {
+    width: 20px;
+    cursor: pointer;
+}
+
+/* Each bar of the hamburger icon: solid 3 px black stripe with
+   6 px vertical breathing room between bars. */
+.hamburger-icon span {
+    display: block;
+    height: 3px;
+    background: black;
+    margin: 6px 0;
+}
+
+/* Removes the native arrow/triangle from the <details> summary
+   so the hamburger icon acts as the sole open/close cue. */
+.hamburger-wrapper details summary {
+    list-style: none;
+    cursor: pointer;
+}
+.hamburger-wrapper details summary::-webkit-details-marker { display: none; }
+
+/* Full-screen overlay menu that slides in from below the header
+   when the hamburger is tapped. 100 vh height lets it cover the
+   whole viewport; z-index 200 places it above the header bar. */
+.mobile-nav-overlay {
+    display: block;
+    position: fixed;
+    top: 48px;
+    left: 0;
+    width: 100%;
+    background: white;
+    list-style: none;
+    padding: 20px 40px 30px;
+    z-index: 200;
+    height: 100vh;
+}
+
+/* Each nav item in the mobile overlay: large, bold text that's
+   easy to tap. */
+.mobile-nav-overlay li { padding: 12px 0; font-size: 1.9em; font-weight: 700; }
+
+/* Remove underlines from mobile nav links and keep them black. */
+.mobile-nav-overlay a  { color: black; text-decoration: none; }
+
+
+/* ----------------------------------------------------------
+   B-2  HERO SECTION 1 — iPhone Family (Mobile)
+   ---------------------------------------------------------- */
+
+/* Full-width hero panel with the iPhone family background image.
+   Top margin of 48 px offsets the fixed header so content isn't
+   hidden underneath it on mobile. */
+.hero-iphone {
+    margin-top: 48px;
+    background-image: url('Images/hero_iphone_family__be5jkzxszb1e_large_2x.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    width: 100%;
+}
+
+/* Primary headline inside the iPhone hero: large, centered,
+   slightly tight letter-spacing for the Apple aesthetic. */
+.hero-iphone .headline-primary {
+    letter-spacing: -1px;
+    text-align: center;
+    padding-top: 40px;
+    font-size: 32px;
+    font-weight: 650;
+}
+
+/* Sub-headline / tagline below the primary headline. */
+.hero-iphone .headline-sub {
+    letter-spacing: -0.8px;
+    padding-top: 6px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+/* Flex wrapper that horizontally centres the CTA button row. */
+.hero-iphone-cta-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+/* Inline list that places "Learn More" and "Shop" buttons side by side. */
+.hero-iphone-btns {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+/* Strip underlines from CTA anchor tags. */
+.hero-iphone-btns a { text-decoration: none; }
+
+/* Solid blue pill button — used for the primary "Learn More" CTA. */
+.btn-primary-blue {
+    height: 40px;
+    width: 120px;
+    background-color: #0077e6;
+    border-radius: 30px;
+}
+
+/* Outlined transparent pill button — used for the secondary "Shop" CTA. */
+.btn-outline-blue {
+    height: 40px;
+    width: 130px;
+    background-color: transparent;
+    border-radius: 30px;
+    border: 1px solid #0077e6;
+}
+
+/* Shared label style for both CTA buttons: white text, centered,
+   small font. The two variants differ only in colour. */
+.btn-label-white,
+.btn-label-blue {
+    font-weight: 500;
+    padding-top: 10px;
+    font-size: 13px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+/* Override — the outline button's label is blue instead of white. */
+.btn-label-blue { color: #0077e6; }
+
+/* Hover: fill the outline button with blue... */
+.btn-outline-blue:hover { background-color: #0077e6; }
+/* ...and flip its label text to white to stay legible. */
+.btn-outline-blue:hover .btn-label-blue { color: white; }
+
+
+/* ----------------------------------------------------------
+   B-3  HERO SECTION 2 — Father's Day (Mobile)
+   ---------------------------------------------------------- */
+
+/* Second hero panel using the Father's Day background image.
+   10 px top gap separates it from the iPhone hero above. */
+.hero-fathers-day {
+    margin-top: 10px;
+    background-image: url('Images/hero_fd26__c9vr0hxu24eq_large_2x.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    width: 100%;
+}
+
+/* Headline for the Father's Day section. */
+.fathersday-headline {
+    letter-spacing: -1px;
+    text-align: center;
+    padding-top: 40px;
+    font-size: 32px;
+    font-weight: 650;
+}
+
+/* Sub-headline for the Father's Day section. */
+.fathersday-subline {
+    padding-top: 6px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+/* Flex wrapper that centres the single "Shop" CTA button. */
+.fathersday-cta-wrap {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+/* The "Shop" CTA pill button specific to the Father's Day section. */
+.fathersday-cta-btn {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    width: 80px;
+    background-color: #0077e6;
+    border-radius: 30px;
+}
+
+/* White label for the Father's Day shop button, styled as an inline link. */
+.fathersday-btn-label {
+    font-weight: 500;
+    padding-top: 10px;
+    font-size: 13px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+
+/* ----------------------------------------------------------
+   B-4  HERO SECTION 3 — Apple for College (Mobile)
+   ---------------------------------------------------------- */
+
+/* Third hero panel: light grey background with the college image
+   centred at 600 px width (so it fits mobile without cropping). */
+.hero-college {
+    margin-top: 10px;
+    background-image: url('Images/hero_college_students_2026__dzrtx52rt9aq_mediumtall.jpg');
+    height: 500px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 600px;
+    background-color: #f5f5f7;
+    text-align: center;
+}
+
+/* Primary headline for the college section. */
+.college-headline {
+    padding-top: 40px;
+    display: block;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -1px;
+}
+
+/* Sub-headline for the college section. */
+.college-subline {
+    padding-top: 6px;
+    display: block;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 480;
+    letter-spacing: -0.5px;
+}
+
+/* Flex wrapper that centres the "Learn More" CTA button. */
+.college-cta-wrap {
+    padding-top: 14px;
+    display: flex;
+    justify-content: center;
+}
+
+/* The "Learn More" pill button for the college section. */
+.college-cta-btn {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    width: 120px;
+    background-color: #0077e6;
+    border-radius: 30px;
+}
+
+/* White text label inside the college CTA button. */
+.college-btn-label {
+    font-weight: 500;
+    padding-top: 10px;
+    font-size: 13px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+
+/* ----------------------------------------------------------
+   B-5  TWO-PANEL GRID SECTIONS 4, 5 & 6 (Mobile stacking)
+   ---------------------------------------------------------- */
+
+/* On mobile all three double-panel sections stack vertically
+   (flex-direction: column) with a 10 px gap between panels. */
+.panel-grid-a,
+.panel-grid-b,
+.panel-grid-c {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Each left/right panel inside all three grid sections fills the
+   full width and stands 500 px tall on mobile. */
+.panel-grid-a .panel-left-a, .panel-grid-a .panel-right-a,
+.panel-grid-b .panel-left-b, .panel-grid-b .panel-right-b,
+.panel-grid-c .panel-left-c, .panel-grid-c .panel-right-c {
+    width: 100%;
+    height: 500px;
+}
+
+
+/* ----------------------------------------------------------
+   B-6  SECTION 4 PANELS — MacBook Air & iPad Air (Mobile)
+   ---------------------------------------------------------- */
+
+/* Left panel: MacBook Air background image, centred and covering. */
+.panel-grid-a .panel-left-a {
+    background-image: url('Images/promo_macbook_air_m5__e5xk2yysqiie_large_2x.jpg');
+    background-position: center;
+    background-size: cover;
+    background-color: #f5f5f7;
+}
+
+/* Right panel: iPad Air background image with flex column layout
+   so logo, text and buttons stack from the top. */
+.panel-grid-a .panel-right-a {
+    background-image: url('Images/promo_ipad_air_m4__bgcv7t286k8y_large_2x.jpg');
+    background-position: center;
+    background-size: cover;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f7;
+}
+
+/* MacBook Air headline inside the left panel. */
+.panel-left-a .mac-air-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -2px;
+}
+
+/* MacBook Air / iPad Air shared sub-headline style. */
+.panel-left-a .mac-air-subtitle {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    word-spacing: 1px;
+}
+
+/* Spacer padding above the CTA button rows in both panels. */
+.mac-air-cta-wrap,
+.ipad-air-cta-wrap { padding-top: 14px; }
+
+/* Inline unordered lists for the "Learn more / Buy" button pairs. */
+.mac-air-cta-wrap ul,
+.ipad-air-cta-wrap ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+}
+
+/* Remove underlines from section-4 CTA links. */
+.mac-air-cta-wrap ul a,
+.ipad-air-cta-wrap ul li a { text-decoration: none; }
+
+/* Solid blue pill "Learn more" buttons in section 4 (both panels). */
+.panel-left-a .btn-blue-sm,
+.ipad-air-cta-wrap .btn-blue-sm {
+    display: flex;
+    justify-content: center;
+    height: 34px;
+    width: 100px;
+    background-color: #0077e6;
+    border-radius: 980px;
+}
+
+/* Narrow outlined "Buy" buttons in section 4 (both panels). */
+.panel-left-a .btn-buy-sm,
+.ipad-air-cta-wrap .btn-buy-sm {
+    width: 60px;
+    background-color: transparent;
+    border-radius: 980px;
+    border: 1px solid #0077e6;
+}
+
+/* White label text inside the solid "Learn more" buttons. */
+.panel-left-a .label-white-sm,
+.ipad-air-cta-wrap .label-white-sm {
+    word-spacing: 1px;
+    font-size: 12px;
+    font-weight: 480;
+    padding-top: 8px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+/* Blue label text inside the "Buy" outline buttons. */
+.panel-left-a .label-blue-sm,
+.ipad-air-cta-wrap .label-blue-sm {
+    font-size: 12px;
+    font-weight: 480;
+    padding-top: 8px;
+    color: #0077e6;
+    display: flex;
+    justify-content: center;
+}
+
+/* Hover: fill the "Buy" button with blue on both panels. */
+.panel-left-a .btn-buy-sm:hover,
+.panel-right-a .btn-buy-sm:hover { background-color: #0077e6; }
+/* Flip the label text to white on hover. */
+.btn-buy-sm:hover .label-blue-sm,
+.btn-buy-sm:hover .label-blue-sm   { color: white; }
+
+/* iPad Air product logo image: fluid width clamped between
+   140 px (smallest mobile) and 280 px (larger screens). */
+.ipad-product-logo {
+    width: clamp(140px, 55vw, 280px);
+    height: auto;
+    object-fit: contain;
+}
+
+/* Short descriptor text below the iPad logo. */
+.panel-right-a p {
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    word-spacing: 1px;
+}
+
+
+/* ----------------------------------------------------------
+   B-7  SECTION 5 PANELS — MacBook Pro & Apple Watch (Mobile)
+   ---------------------------------------------------------- */
+
+/* Left panel: MacBook Pro dark background image. */
+.panel-grid-b .panel-left-b {
+    background-image: url('Images/promo_macbook_pro__c9td9w1mc8ia_large_2x.jpg');
+    background-position: center;
+    background-size: cover;
+    background-color: #f5f5f7;
+}
+
+/* Right panel: Apple Watch background image with flex column for
+   stacking content from the top. */
+.panel-grid-b .panel-right-b {
+    background-image: url('Images/promo_apple_watch_series_11__gnlwqxe1jlu2_large_2x.jpg');
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    background-color: #f5f5f7;
+}
+
+/* MacBook Pro headline — white text to stand out against the dark
+   product background image. */
+.panel-grid-b .macpro-title {
+    color: white;
+    text-align: center;
+    padding-top: 40px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -1.2px;
+}
+
+/* MacBook Pro sub-headline — also white. */
+.panel-grid-b .macpro-subtitle {
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Horizontal button rows for MacBook Pro and Apple Watch CTAs. */
+.panel-grid-b .macpro-cta-wrap ul,
+.watch-cta-wrap ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-top: 14px;
+    gap: 14px;
+}
+
+/* Remove underlines from section-5 button links. */
+.panel-grid-b .macpro-cta-wrap ul li a,
+.watch-cta-wrap ul li a { text-decoration: none; }
+
+/* Solid blue "Learn more" pill for MacBook Pro panel. */
+.panel-grid-b .btn-blue-macpro,
+/* Solid blue "Learn more" pill for Apple Watch panel. */
+.panel-grid-b .btn-blue-watch {
+    display: flex;
+    justify-content: center;
+    height: 34px;
+    width: 100px;
+    background-color: #0077e6;
+    border-radius: 980px;
+}
+
+/* Outline "Buy" buttons for section 5 (both panels). */
+.panel-grid-b .panel-left-b .btn-buy-sm,
+.panel-grid-b .panel-right-b .btn-buy-sm {
+    width: 60px;
+    background-color: transparent;
+    border-radius: 980px;
+    border: 1px solid #0077e6;
+}
+
+/* White text labels in the solid blue buttons of section 5. */
+.panel-grid-b .label-white-sm-b,
+.panel-grid-b .label-white-sm-bw {
+    word-spacing: 1px;
+    font-size: 12px;
+    font-weight: 480;
+    padding-top: 8px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+/* Blue text labels in the outline "Buy" buttons of section 5. */
+.panel-grid-b .label-blue-sm-b,
+.panel-grid-b .label-blue-sm-bw {
+    font-size: 12px;
+    font-weight: 480;
+    padding-top: 8px;
+    color: #0077e6;
+    display: flex;
+    justify-content: center;
+}
+
+/* Hover fill for "Buy" buttons in section 5. */
+.panel-left-b .btn-buy-sm:hover,
+.panel-right-b .btn-buy-sm:hover { background-color: #0077e6; }
+/* Flip blue labels to white on hover. */
+.btn-buy-sm:hover .label-blue-sm-b,
+.btn-buy-sm:hover .label-blue-sm-bw   { color: white; }
+
+/* Apple Watch logo image: fluid width clamped 160–260 px. */
+.watch-product-logo {
+    width: clamp(160px, 50vw, 260px);
+    height: auto;
+    object-fit: contain;
+}
+
+/* Apple Watch descriptor text below the logo. */
+.watch-tagline {
+    margin-top: 0;
+    letter-spacing: -1px;
+    font-weight: 500;
+    font-size: 16px;
+    word-spacing: 1px;
+    text-align: center;
+}
+
+
+/* ----------------------------------------------------------
+   B-8  SECTION 6 PANELS — Apple Card & iPhone Trade In (Mobile)
+   ---------------------------------------------------------- */
+
+/* Left panel: Apple Card background image with column layout. */
+.panel-grid-c .panel-left-c {
+    background-image: url('Images/promo_apple_card_airpods__dpbuw4e90126_large_2x.jpg');
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    background-color: #f5f5f7;
+}
+
+/* Right panel: Trade-In background image with column layout. */
+.panel-grid-c .panel-right-c {
+    background-image: url('Images/promo_iphone_tradein__e4hrjxmgmf0i_large_2x.jpg');
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    background-color: #f5f5f7;
+}
+
+/* Apple Card logo image: fluid width clamped 110–220 px. */
+.panel-grid-c .panel-left-c .card-product-logo {
+    width: clamp(110px, 40vw, 220px);
+    height: auto;
+    object-fit: contain;
+}
+
+/* Shared text style for product name, offer lines, and trade-in
+   money lines inside section 6. */
+.panel-grid-c .offer-line-a,
+.panel-grid-c .offer-line-b,
+.panel-grid-c .tradein-line-a,
+.panel-grid-c .tradein-line-b,
+.panel-grid-c .tradein-line-c {
+    font-size: 17px;
+    font-weight: 490;
+    letter-spacing: -1px;
+    word-spacing: 1px;
+}
+
+/* Pulls the first offer line up slightly to close the gap after
+   the product logo image. */
+.panel-grid-c .offer-line-a { margin-top: -15px; }
+
+/* Disclaimer / footnote text below the main offer lines. */
+.panel-grid-c .offer-disclaimer {
+    font-size: 14px;
+    color: #6e6e73;
+    font-weight: 500;
+    word-spacing: 1px;
+    padding-bottom: 15px;
+}
+
+/* Solid blue "Learn more" pill button for Apple Card panel. */
+.panel-grid-c .btn-blue-card {
+    display: flex;
+    justify-content: center;
+    height: 34px;
+    width: 100px;
+    background-color: #0077e6;
+    border-radius: 980px;
+}
+
+/* Remove underline from the Apple Card "Learn more" link. */
+.panel-grid-c .panel-left-c a { text-decoration: none; }
+
+/* White text label for the Apple Card CTA button. */
+.panel-grid-c .card-btn-label {
+    word-spacing: 1px;
+    font-size: 12px;
+    font-weight: 480;
+    padding-top: 8px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+/* Trade-In logo image: fluid width clamped 150–260 px. */
+.panel-grid-c .tradein-product-logo {
+    width: clamp(150px, 45vw, 260px);
+    height: auto;
+    object-fit: contain;
+}
+
+/* Slight upward pull on the first trade-in money line to close
+   the gap after the logo image. */
+.panel-grid-c .tradein-line-a { margin-top: -10px; }
+/* Extra bottom padding below the final trade-in line. */
+.panel-grid-c .tradein-line-c { padding-bottom: 12px; }
+
+/* Wider solid blue CTA pill for the "Get your estimate" button
+   on the Trade In panel. */
+.tradein-cta-btn {
+    display: flex;
+    justify-content: center;
+    height: 34px;
+    width: 140px;
+    background-color: #0077e6;
+    border-radius: 980px;
+}
+
+/* White text label for the "Get your estimate" button — also
+   acts as the anchor tag so text-decoration is removed. */
+.panel-grid-c .tradein-btn-label {
+    word-spacing: 1px;
+    font-size: 12px;
+    font-weight: 480;
+    padding-top: 8px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+
+/* ----------------------------------------------------------
+   B-9  ENTERTAINMENT SECTION (Mobile)
+   ---------------------------------------------------------- */
+
+/* Container for the full entertainment carousel section:
+   light grey background with consistent vertical padding
+   and hidden overflow to clip the scrolling rows. */
+.media-showcase {
+    background-color: #f5f5f7;
+    padding: 38px 0 32px;
+    overflow: hidden;
+}
+
+/* "Endless entertainment." section heading. */
+.media-showcase h2 {
+    text-align: center;
+    font-size: 30px;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-bottom: 18px;
+}
+
+/* The two auto-scrolling rows (wide feature cards and small app cards)
+   share the same base layout: items in a row wider than the viewport,
+   no scrollbar visible. */
+.media-features-row,
+.media-cards-row {
+    display: flex;
+    gap: 14px;
+    width: max-content;
+    scrollbar-width: none;
+    will-change: transform;
+}
+
+/* Hide WebKit scrollbar handle on the two rows. */
+.media-features-row::-webkit-scrollbar,
+.media-cards-row::-webkit-scrollbar {
+    display: none;
+}
+
+/* The wider feature-image row: starts offset from the left edge
+   and loops with a slower 70 s marquee. */
+.media-features-row {
+    margin-left: 10vw;
+    padding-bottom: 14px;
+    animation: marquee-scroll 70s linear infinite;
+}
+
+/* The smaller app-card row: faster 42 s marquee loop. */
+.media-cards-row {
+    margin-left: 14px;
+    animation: marquee-scroll 42s linear infinite;
+}
+
+/* Pause the animation on hover so users can inspect a card. */
+.media-features-row:hover,
+.media-cards-row:hover {
+    animation-play-state: paused;
+}
+
+/* Base styles shared by both card types: don't shrink, clip overflowing
+   content, dark background as a fallback before the image loads. */
+.media-feature-item,
+.media-card-item {
+    position: relative;
+    flex: 0 0 auto;
+    overflow: hidden;
+    background-color: #111;
+}
+
+/* Wide landscape feature cards. */
+.media-feature-item {
+    width: min(82vw, 760px);
+    height: 365px;
+}
+
+/* Both card types fill their container with the cover image. */
+.media-feature-item img,
+.media-card-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Overlay text positioned in the lower-left of each feature card,
+   with a subtle text-shadow for legibility over varied images. */
+.media-feature-overlay {
+    position: absolute;
+    left: 42px;
+    bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: white;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.42);
+}
+
+/* Shared pill-button style used inside both feature and app-card overlays. */
+.media-feature-overlay a,
+.media-card-overlay a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0 18px;
+    border-radius: 980px;
+    background-color: rgba(255,255,255,0.92);
+    color: #1d1d1f;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    word-spacing: 0;
+}
+
+/* Feature card overlay genre/show descriptor paragraph. */
+.media-feature-overlay p {
+    font-size: 16px;
+    font-weight: 700;
+    word-spacing: 0;
+}
+
+/* Bullet separator between genre label and show title. */
+.media-feature-overlay span {
+    font-size: 12px;
+}
+
+/* Small portrait app-card dimensions. */
+.media-card-item {
+    width: 190px;
+    height: 255px;
+}
+
+/* Semi-transparent gradient scrim over each app card — darker at
+   the top and bottom, lighter in the middle — to ensure text legibility. */
+.media-card-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.08) 42%, rgba(0,0,0,0.48));
+    pointer-events: none;
+}
+
+/* Overlay container that stacks the app label, show title, and
+   CTA button over the card image. */
+.media-card-overlay {
+    position: absolute;
+    inset: 14px 12px 16px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+    text-shadow: 0 1px 9px rgba(0,0,0,0.45);
+}
+
+/* App service name (e.g. "Fitness+") in the top-left of the card. */
+.media-card-overlay p {
+    align-self: flex-start;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1;
+    word-spacing: 0;
+}
+
+/* Content title at the bottom of each app card. */
+.media-card-overlay h3 {
+    margin-top: auto;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.18;
+    font-weight: 700;
+    letter-spacing: 0;
+    word-spacing: 0;
+}
+
+/* Smaller CTA button inside the app cards. */
+.media-card-overlay a {
+    min-height: 30px;
+    padding: 0 14px;
+    font-size: 12px;
+}
+
+/* Row of pagination dots below the carousel rows. */
+.media-nav-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+/* Individual pagination dot: small grey circle. */
+.media-nav-dots span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #8f8f94;
+    opacity: 0.45;
+}
+
+/* Active/selected dot: wider pill shape with higher opacity. */
+.media-nav-dots .active {
+    width: 28px;
+    border-radius: 999px;
+    opacity: 0.9;
+}
+
+/* Keyframes for the infinite horizontal marquee animation.
+   Content slides from its starting position left by 50% (which
+   corresponds to one full set of duplicated items). */
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+/* ----------------------------------------------------------
+   B-10  FOOTER (Mobile)
+   ---------------------------------------------------------- */
+
+/* Footer background: near-white to separate it from the content above. */
+.site-footer { background-color: #f8f8ff; }
+
+/* Shared horizontal margin applied to all main footer containers
+   to keep content away from the screen edges on mobile. */
+.footer-legal-block,
+.footer-meta-block,
+.footer-bottom-section,
+.footer-credits-wrap {
+    margin: 0 20px;
+}
+
+/* Top legal block: fine-print footnotes with a bottom divider. */
+.footer-legal-block {
+    padding: 17px 0 11px;
+    border-bottom: 1px solid rgba(0,0,0,0.16);
+}
+
+/* Second fine-print block (subscription note) also has a bottom divider. */
+.footer-meta-block {
+    border-bottom: 1px solid rgba(0,0,0,0.16);
+}
+
+/* Shared typography for the fine-print numbered list. */
+.footer-legal-list {
+    font-size: 11px;
+    line-height: 1.3333733333;
+    letter-spacing: -0.01em;
+}
+
+/* Shared colour, weight and size for both footer text paragraph styles. */
+.footer-fine-print,
+.footer-fine-print-alt {
+    word-spacing: 1px;
+    color: rgba(0,0,0,0.56);
+    font-weight: 540;
+    font-size: 11px;
+    line-height: 1.3333733333;
+    letter-spacing: -0.01em;
+}
+
+/* Desktop multi-column link grid is hidden on mobile. */
+.footer-nav-columns { display: none; }
+
+/* Mobile accordion-style footer links: visible on mobile, hidden on desktop. */
+.footer-accordion {
+    display: block;
+    border-top: 1px solid rgba(0,0,0,0.16);
+    font-size: 12px;
+}
+
+/* Each accordion section has a bottom border to separate categories. */
+.footer-accordion details {
+    border-bottom: 1px solid rgba(0,0,0,0.16);
+}
+
+/* Accordion section header row: space-between layout to push the
+   caret icon to the right side. */
+.footer-accordion summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 13px 16px;
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    word-spacing: 0px;
+    opacity: 0.9;
+}
+/* Slightly increase opacity on hover to indicate interactivity. */
+.footer-accordion summary:hover {
+    opacity: 1;
+}
+
+/* Remove the native triangle marker from the <details> element. */
+.footer-accordion summary::-webkit-details-marker { display: none; }
+
+/* Inject a down-chevron FontAwesome icon as the collapse indicator. */
+.footer-accordion summary::after {
+    font-family: "FontAwesome";
+    content: "\f107";
+    font-size: 16px;
+    color: #6e6e73;
+}
+/* Switch to up-chevron when the section is expanded. */
+.footer-accordion details[open] summary::after { content: "\f106"; }
+
+/* List of links inside each accordion panel. */
+.footer-accordion ul {
+    list-style: none;
+    padding: 0 16px 14px 16px;
+    margin-left: 15px;
+}
+
+/* Individual link rows have a small top/bottom padding for tap targets. */
+.footer-accordion ul li {
+    padding: 6px 0;
+    
+}
+
+/* Accordion link styling: dark, no underline by default. */
+.footer-accordion ul li a {
+    text-decoration: none;
+    color: #2a2a2c;
+    font-size: 12px;
+    word-spacing: 0px;
+}
+
+/* Underline accordion links on hover for discoverability. */
+.footer-accordion ul li a:hover { text-decoration: underline; }
+
+/* "More ways to shop" section with store finder links. */
+.footer-bottom-section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: #6e6e73 1px solid;
+}
+
+/* Small body copy for the store-finder paragraph. */
+.footer-store-finder-text {
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    line-height: 1.3333733333;
+    color: rgba(0,0,0,0.56);
+    font-weight: 540;
+    word-spacing: 1px;
+}
+
+/* Blue link colour for store finder inline links. */
+.footer-store-finder-text a { color: rgb(58,128,250); word-spacing: 1px; }
+
+/* Copyright line and legal links row: stacked vertically on mobile. */
+.footer-credits-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+    font-size: 11px;
+    line-height: 1.3333733333;
+    color: rgba(0,0,0,0.56);
+    font-weight: 540;
+}
+
+/* Inline list of legal links (Privacy Policy, Terms, etc.) */
+.footer-legal-links-row {
+    display: flex;
+    gap: 6px;
+    list-style: none;
+    margin-left: 0;
+    flex-wrap: wrap;
+}
+
+/* Legal link and country link styling: slightly darker than the
+   surrounding footer text, no underline by default. */
+.footer-legal-links-row li a,
+.footer-country-link a {
+    text-decoration: none;
+    color: rgba(0,0,0,0.75);
+    word-spacing: 1px;
+}
+
+/* Underline on hover to indicate they're clickable. */
+.footer-legal-links-row li a:hover,
+.footer-country-link a:hover { text-decoration: underline; }
+
+
+/* ============================================================
+   SECTION C: TABLET / DESKTOP STYLES  (viewport >= 768 px)
+   ============================================================ */
+@media (min-width: 768px) {
+
+    /* Hero sections get taller on wider screens. */
+    .hero-iphone {
+        height: 600px;
+    }
+
+    /* All three primary hero headlines scale up for desktop. */
+    .hero-iphone .headline-primary,
+    .hero-fathers-day .fathersday-headline,
+    .hero-college .college-headline {
+        font-size: 55px;
+        padding-top: 50px;
+        letter-spacing: -2px;
+    }
+
+    /* Hero sub-headline scales up too. */
+    .hero-iphone .headline-sub {
+        font-size: 26px;
+        padding-top: 5px;
+    }
+
+    /* iPhone hero CTA buttons grow slightly on desktop for easier clicking. */
+    .btn-primary-blue { height: 44px; width: 130px; border-radius: 980px; }
+    .btn-outline-blue { width: 140px; border-radius: 980px; }
+    .btn-label-white, .btn-label-blue { padding-top: 12px; font-size: 16px; }
+
+
+    /* Father's Day and college sections get taller and a larger gap. */
+    .hero-fathers-day,
+    .hero-college {
+        height: 600px;
+        margin-top: 12px;
+    }
+
+    /* College image zooms to 1200 px on wider viewports. */
+    .hero-college {
+        background-size: 1200px;
+    }
+
+    /* Small top margin before the grid sections on desktop. */
+    .panel-grid-a {
+        margin-top: 6px;
+    }
+
+    /* Father's Day sub-headline scale. */
+    .fathersday-subline {
+        font-size: 25px;
+        padding-top: 5px;
+    }
+
+    /* Father's Day CTA button grows for desktop. */
+    .fathersday-cta-btn { height: 44px; width: 85px; border-radius: 980px; }
+    .fathersday-btn-label { padding-top: 12px; font-size: 16px; }
+
+    /* College headline and sub-headline use flex centering on desktop. */
+    .hero-college .college-headline,
+    .hero-college .college-subline {
+        display: flex;
+        justify-content: center;
+    }
+    .college-subline { font-size: 25px; padding-top: 5px; letter-spacing: -0.9px; }
+    .college-cta-wrap { padding-top: 15px; }
+    .college-cta-btn { height: 44px; width: 130px; border-radius: 980px; }
+    .college-btn-label { padding-top: 12px; }
+
+
+    /* Switch all three grid sections from vertical column to
+       horizontal row with even spacing on desktop. */
+    .panel-grid-a,
+    .panel-grid-b,
+    .panel-grid-c {
+        padding: 6px;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: stretch;
+    }
+
+    /* Desktop panel height reduced from 500 px to 490 px so all
+       panels in a row align evenly. */
+    .panel-grid-a .panel-left-a, .panel-grid-a .panel-right-a,
+    .panel-grid-b .panel-left-b, .panel-grid-b .panel-right-b,
+    .panel-grid-c .panel-left-c, .panel-grid-c .panel-right-c {
+        height: 490px;
+    }
+
+
+    /* MacBook Air headline and sub-headline scale up for desktop. */
+    .panel-left-a .mac-air-title { font-size: 38px; padding-top: 46px; }
+    .panel-left-a .mac-air-subtitle { font-size: 20px; }
+
+    /* Section 4 CTA buttons widen slightly on desktop. */
+    .panel-left-a .btn-blue-sm,
+    .ipad-air-cta-wrap .btn-blue-sm { width: 104px; height: 36px; }
+
+    /* Section 4 button labels grow for desktop. */
+    .panel-left-a .label-white-sm, .panel-left-a .label-blue-sm,
+    .ipad-air-cta-wrap .label-white-sm, .ipad-air-cta-wrap .label-blue-sm { padding-top: 10px; font-size: 13px; }
+
+    /* iPad Air panel shifts its content down slightly on desktop. */
+    .panel-right-a { padding-top: 50px; }
+
+    /* iPad Air descriptor text scales up. */
+    .panel-right-a p { font-size: 20px;}
+
+    /* iPad Air logo grows on wider screens. */
+    .ipad-product-logo { width: clamp(150px, 16vw, 300px); }
+
+    /* MacBook Pro headline and sub-headline scale up. */
+    .panel-grid-b .macpro-title { font-size: 38px; padding-top: 50px; }
+    .panel-grid-b .macpro-subtitle { font-size: 20px; }
+
+    /* Section 5 "Learn more" buttons widen on desktop. */
+    .panel-grid-b .btn-blue-macpro, .panel-grid-b .btn-blue-watch { width: 104px; height: 36px; }
+
+    /* Section 5 button label sizes increase. */
+    .panel-grid-b .label-white-sm-b, .panel-grid-b .label-blue-sm-b,
+    .panel-grid-b .label-white-sm-bw, .panel-grid-b .label-blue-sm-bw { padding-top: 10px; font-size: 13px; }
+
+    /* Apple Watch panel top padding on desktop. */
+    .panel-grid-b .panel-right-b { padding-top: 50px; }
+
+    /* Apple Watch logo grows on wider screens. */
+    .watch-product-logo { width: clamp(220px, 24vw, 340px); }
+
+    /* Watch tagline text scales up slightly on desktop. */
+    .watch-tagline { font-size: 19px; margin-top: -10px; }
+
+    /* Section 6 panels shift content down a touch on desktop. */
+    .panel-grid-c .panel-left-c, .panel-grid-c .panel-right-c { padding-top: 50px; }
+
+    /* Apple Card logo grows on wider screens. */
+    .card-product-logo { width: clamp(140px, 16vw, 240px); }
+
+    /* Trade-in logo grows on wider screens. */
+    .tradein-product-logo { width: clamp(170px, 18vw, 280px); }
+
+    /* Section 6 text lines scale up for desktop. */
+    .panel-grid-c .offer-line-a, .panel-grid-c .offer-line-b,
+    .panel-grid-c .tradein-line-a, .panel-grid-c .tradein-line-b, .panel-grid-c .tradein-line-c { font-size: 20px; }
+
+    /* Apple Card "Learn more" button grows for desktop. */
+    .panel-grid-c .btn-blue-card { width: 104px; height: 36px; }
+
+    /* Apple Card button label grows. */
+    .panel-grid-c .card-btn-label { padding-top: 10px; font-size: 13px; }
+
+    /* Trade-in CTA button grows. */
+    .tradein-cta-btn { width: 150px; height: 36px; }
+
+    /* Trade-in button label grows. */
+    .panel-grid-c .tradein-btn-label { padding-top: 10px; font-size: 13px; }
+
+    /* Entertainment section gets more breathing room on desktop. */
+    .media-showcase {
+        padding-top: 44px;
+        padding-bottom: 34px;
+    }
+
+    /* Entertainment heading scales up for desktop. */
+    .media-showcase h2 {
+        font-size: 34px;
+        margin-bottom: 18px;
+    }
+
+    /* Centre the feature row on desktop so the first card is centred. */
+    .media-features-row {
+        margin-left: calc((100vw - min(80vw, 760px)) / 2);
+        padding-right: 0;
+    }
+
+    /* Feature cards widen slightly on desktop. */
+    .media-feature-item {
+        width: min(80vw, 760px);
+        height: 365px;
+    }
+
+    /* Reset the app-card row left margin for desktop. */
+    .media-cards-row {
+        margin-left: 0;
+        padding-right: 0;
+    }
+
+    /* App cards widen slightly on desktop. */
+    .media-card-item {
+        width: 220px;
+        height: 255px;
+    }
+
+
+    /* Footer containers get larger horizontal margins on desktop. */
+    .footer-legal-block,
+    .footer-meta-block,
+    .footer-nav-columns,
+    .footer-bottom-section,
+    .footer-credits-wrap {
+        margin-left: 240px;
+        margin-right: 240px;
+    }
+    
+    /* Store-finder section gets more top padding on desktop. */
+    .footer-bottom-section { padding-top: 40px; }
+
+    /* Copyright row switches to horizontal layout on desktop. */
+    .footer-credits-wrap { flex-direction: row; justify-content: space-between; align-items: center; }
+
+    /* Negative left margin nudges the legal links toward the centre. */
+    .footer-legal-links-row { margin-left: -150px; }
+
+    /* Show the desktop multi-column link grid; hide the mobile accordion. */
+    .footer-accordion { display: none; }
+    .footer-nav-columns {
+        display: flex;
+        font-size: 12px;
+        line-height: 1.3333733333;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        padding-top: 20px;
+        gap: 50px;
+    }
+
+    /* Each column is an unstyled vertical list. */
+    .footer-nav-columns ul { list-style: none; }
+
+    /* Category heading inside each column. */
+    .footer-nav-columns ul li { word-spacing: 1px; font-size: 12px; font-weight: 550; padding-top: 10px; }
+
+    /* Sub-link items inside each category. */
+    .footer-nav-columns ul li ul li { font-size: 11px; font-weight: 400; }
+
+    /* Sub-link anchor styling. */
+    .footer-nav-columns ul li ul li a { color: rgba(0,0,0,0.72); text-decoration: none; word-spacing: 1px; font-weight: 500; }
+
+    /* Underline sub-links on hover. */
+    .footer-nav-columns ul li ul li a:hover { text-decoration: underline; }
+
+    /* Extra top margin above the second category group in columns 1, 2, 4, 5. */
+    .footer-col-1-lower, .footer-col-2-lower,
+    .footer-col-4-lower, .footer-col-5-lower { margin-top: 20px; }
+}
+
+
+/* ============================================================
+   SECTION D: FULL DESKTOP HEADER  (viewport >= 834 px)
+   Shows the complete 11-item navigation with mega-menus.
+   Below 834 px the simplified mobile header is shown instead.
+   ============================================================ */
+@media (min-width: 834px) {
+
+    /* Switch header from fixed to sticky (in-flow) on desktop so
+       it scrolls with the page before snapping to the top.
+       Centred flex layout with proportional gaps. */
+    .top-header-bar {
+        background-color: rgba(255, 255, 255, 0.8);
+        height: auto;
+        padding: 15px clamp(15px, 3vw, 40px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(20px, 3vw, 40px);
+        position: sticky;
+        top: 0;
+        font-size: 12px;
+    }
+
+    /* Show the desktop nav link group that was hidden on mobile. */
+    .desktop-nav-links { display: block; }
+
+    /* Horizontal pill list of top-level nav items. */
+    .primary-nav-list {
+        display: flex;
+        list-style: none;
+        flex-wrap: nowrap;
+        gap: clamp(16px, 1.6vw, 30px);
+    }
+
+    /* Each top-level nav item is a flex container for vertical alignment. */
+    .primary-nav-list > li {
+        display: flex;
+        align-items: center;
+        min-height: 18px;
+    }
+
+    /* Clean anchor style: dark text, no underline, no wrapping. */
+    .primary-nav-list a {
+        text-decoration: none;
+        color: #1d1d1f;
+        white-space: nowrap;
+    }
+    /* Darken slightly on hover. */
+    .primary-nav-list a:hover { color: #000; }
+
+    /* Mega-drop-down panel: full viewport-width overlay anchored below
+       the header bar. Hidden by default with 0 opacity and pointer-events
+       disabled; transitions in when the parent li is hovered. */
+    .mega-dropdown {
+        position: fixed;
+        top: 45px;
+        left: 0;
+        right: 0;
+        background-color: #f5f5f7;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+        z-index: 95;
+        pointer-events: none;
+    }
+
+    /* Blurred grey curtain that extends below the mega-menu panel to
+       soften the page behind it while the menu is open. */
+    .mega-dropdown::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        background-color: rgba(245, 245, 247, 0.82);
+        backdrop-filter: blur(70px) saturate(140%);
+        -webkit-backdrop-filter: blur(70px) saturate(140%);
+        pointer-events: none;
+    }
+
+    /* Reveal and slide the mega-menu into view when the parent nav item
+       is hovered or receives keyboard focus. */
+    .primary-nav-list > li:hover .mega-dropdown,
+    .primary-nav-list > li:focus-within .mega-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    /* Centred inner wrapper that constrains mega-menu content to
+       980 px with ample padding. */
+    .mega-dropdown-inner {
+        max-width: 980px;
+        margin: 0 auto;
+        min-height: 360px;
+        padding: 38px 22px 58px;
+        display: flex;
+        align-items: flex-start;
+        gap: 70px;
+    }
+
+    /* A single column within the mega-menu: links stacked vertically. */
+    .mega-col {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 140px;
+    }
+
+    /* Category label at the top of each mega-menu column. */
+    .mega-col p {
+        color: #6e6e73;
+        font-size: 12px;
+        font-weight: 500;
+        word-spacing: 0;
+        margin-bottom: 8px;
+    }
+
+    /* Standard link inside a mega-menu column. */
+    .mega-col a {
+        color: #1d1d1f;
+        font-size: 13px;
+        font-weight: 650;
+        line-height: 1.35;
+        white-space: normal;
+        word-spacing: 0;
+    }
+
+    /* The first column in most mega-menus is wider and uses larger
+       type to feature the primary product browsing links. */
+    .mega-col-featured {
+        min-width: 190px;
+        gap: 8px;
+    }
+
+    /* Large-type product links inside the featured column. */
+    .mega-col-featured a {
+        font-size: 24px;
+        line-height: 1.2;
+        letter-spacing: -0.4px;
+    }
+
+    /* Smaller secondary links nested at the bottom of the featured column. */
+    .mega-col-featured .under-text a {
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.25;
+        letter-spacing: 0;
+    }
+
+    /* Tighten the icon gap in the desktop header icon cluster. */
+    .header-icon-group { gap: 14px; }
+
+    /* Slightly smaller icons in the desktop header. */
+    .brand-icon,
+    .search-icon,
+    .bag-icon {
+        width: 15px;
+        height: 15px;
+        filter: none;
+    }
+
+    /* Hide the hamburger toggle and its full-screen overlay on desktop. */
+    .hamburger-wrapper,
+    .mobile-nav-overlay { display: none !important; }
+
+    /* The header is sticky (in-flow) on desktop, so the first hero section
+       no longer needs the 48 px top margin that compensated for fixed positioning. */
+    .hero-iphone { margin-top: 0; }
+}
+
+
+/* ============================================================
+   SECTION E: TABLET OVERRIDE  (768 px – 1100 px)
+   Narrower side margins for the footer so content doesn't crowd.
+   ============================================================ */
+@media (max-width: 1100px) and (min-width: 768px) {
+
+    /* Reduce footer side margins on mid-range tablets where 240 px
+       would push content too close together. */
+    .footer-legal-block,
+    .footer-meta-block,
+    .footer-nav-columns,
+    .footer-bottom-section,
+    .footer-credits-wrap {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    /* Reset the negative left margin on legal links that was set for
+       the full desktop layout — it doesn't fit on tablets. */
+    .footer-legal-links-row { margin-left: 0; }
+}
